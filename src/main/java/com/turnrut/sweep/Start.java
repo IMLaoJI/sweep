@@ -16,7 +16,7 @@ public class Start extends Application {
     private static Random random = new Random();
     private static int rows = 8; // 行数
     private static int columns = 8; // 列数
-    private static int sweepCount = 10; // 雷数量
+    private int sweepCount = 10; // 雷数量
     private int blockSize = 30; // 雷块大小
     private int[][] dataArr;// 数组元素大于等于0表示该位置周围有多少个雷,-1表示雷,-2表示已点开
     private Text[][] textArr;// 界面元素
@@ -56,6 +56,11 @@ public class Start extends Application {
      * 初始化界面元素
      */
     void initTextArr() {
+        Border border = new Border(new BorderStroke(
+                Color.BLACK,
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                BorderWidths.DEFAULT));
         textArr = new Text[columns][rows];
         panesArr = new StackPane[columns][rows];
         for (int x = 0; x < columns; x++)
@@ -68,7 +73,7 @@ public class Start extends Application {
                 pane.setMinHeight(blockSize);
                 pane.setMaxHeight(blockSize);
                 pane.getChildren().add(text);
-                pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+                pane.setBorder(border);
                 panesArr[x][y] = pane;
             }
     }
